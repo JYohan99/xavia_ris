@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="col-9 mensage" style="padding: 0; margin: 0">
+            <div class="estBarraTitulo">
+                <p class="titulo">Agregar equipo</p>
+            </div>
+    
+            <div class="mensage">
+                En esta sección usted puede administrar los equipos imagenológicos de la institución.
+            </div>
+    
+            <div class="interactua">
+                <p class="encabezado">Agregar nuevo equipo imagenológico</p>
+    
+                <!--Formulario-->
+                <div class="container" id="form-Isquierda">
+                    <form
+                        class="row needs-validation"
+                        novalidate
+                        method="post"
+                        th:action="@{/agregarEquipo}"
+                        th:object="${agregarEquipoForm}">
+                        <input type="hidden" th:field="*{id}" th:value="*{id}" />
+    
+                        <div class="col-4">
+                            <label for="input-lavel01">Nombre:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel01"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="nombreEquipo"
+                                th:field="*{nombreEquipo}"
+                                th:value="*{nombreEquipo}" />
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="input-lavel02">Local:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel02"
+                                required
+                                name="local"
+                                th:field="*{local}"
+                                th:value="*{local}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Local 1">Local 1</option>
+                                <option value="Local 2">Local 2</option>
+                                <option value="Local 3">Local 3</option>
+                                <option value="Local 4">Local 4</option>
+                                <option value="Local 5">Local 5</option>
+                                <option value="Local 6">Local 6</option>
+                                <option value="Local Rx">Local Rx</option>
+                                <option value="Salón de Hemodinámica">Salón de Hemodinámica</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="input-lavel03">Departamento:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel03"
+                                required
+                                name="departamento"
+                                th:field="*{departamento}"
+                                th:value="*{departamento}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Cardiologia">Cardiologia</option>
+                                <option value="Rx">Rx</option>
+                                <option value="Tomografia">Tomografia</option>
+                                <option value="Ultasonido">Ultasonido</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="input-lavel04"> Entidad de aplicación PACS:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel04"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="entidadDeApliPACS"
+                                th:field="*{entidadDeApliPACS}"
+                                th:value="*{entidadDeApliPACS}" />
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="input-lavel05"> Dirección IP: </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel05"
+                                required
+                                name="direccionIp"
+                                th:field="*{direccionIp}"
+                                th:value="*{direccionIp}" />
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="input-lavel06"> Estado operacional:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel06"
+                                required
+                                name="estadoOperacional"
+                                th:field="*{estadoOperacional}"
+                                th:value="*{estadoOperacional}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Activo">Activo</option>
+                                <option value="Fuera de servicio">Fuera de servicio</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-4">
+                            <label for="check-label1" class="form-check-label" style="display: inline">
+                                Compatible DICOM:
+                            </label>
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="check-label1"
+                                style="margin-left: 15px"
+                                name="compatibleDICOM"
+                                th:field="*{compatibleDICOM}"
+                                th:value="*{compatibleDICOM}" />
+                        </div>
+    
+                        <div class="col-12">
+                            <a class="boton-cancel btn btn-primary" href="/Equipo">Cancelar</a>
+                            <button class="boton btn btn-primary" type="submit" value="agregarEquipo">
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

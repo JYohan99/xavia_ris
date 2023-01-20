@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="col-9 mensage" style="padding: 0; margin: 0">
+            <!--Barra titulo-->
+            <div class="estBarraTitulo">
+                <p class="titulo">Crear tipos de estudios</p>
+            </div>
+
+            <div class="mensage">
+                En esta sección usted puede crear un tipo de estudio que se realizará en la institución.
+            </div>
+
+            <!--Formulario-->
+            <div class="interactua">
+                <p class="encabezado">Crear tipos de estudios</p>
+                <div class="container" id="form-Isquierda">
+                    <form
+                        class="row needs-validation"
+                        novalidate
+                        method="post"
+                        th:action="@{/agregarTipoEstudio}"
+                        th:object="${agregarTipoEstudioForm}">
+                        <div class="col-4">
+                            <!--input oculto para usar un formulario para eliminar y modificar-->
+                            <input type="hidden" th:field="*{id}" th:value="*{id}" />
+
+                            <label for="input-lavel01">Sistema orgánico:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel01"
+                                required
+                                name="sistemaOrganico"
+                                th:field="*{sistemaOrganico}"
+                                th:value="*{sistemaOrganico}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Anatomical Regions">Anatomical Regions</option>
+                                <option value="Axial Skeleton">Axial Skeleton</option>
+                                <option value="Central Nervous System">Central Nervous System</option>
+                                <option value="Connective Tissue">Connective Tissue</option>
+                                <option value="Mouth and Throat">Mouth and Throat</option>
+                                <option value="Endocrine System">Endocrine System</option>
+                                <option value="Eye">Eye</option>
+                                <option value="Female Reproductive System">
+                                    Female Reproductive System
+                                </option>
+                                <option value="Fetus and Obstetrical">Fetus and Obstetrical</option>
+                                <option value="Gastrointestinal System">Gastrointestinal System</option>
+                                <option value="Heart">Heart</option>
+                                <option value="Hepatobiliary System">Hepatobiliary System</option>
+                                <option value="Lower Arteries">Lower Arteries</option>
+                                <option value="Lymphatic System">Lymphatic System</option>
+                                <option value="Male Reproductive System">
+                                    Male Reproductive System
+                                </option>
+                                <option value="Non-Axial Lower Bones">Non-Axial Lower Bones</option>
+                                <option value="Non-Axial Upper Bones">Non-Axial Upper Bones</option>
+                                <option value="Respiratory System">Respiratory System</option>
+                                <option value="Subcutaneous Tissue">Subcutaneous Tissue</option>
+                                <option value="Skull and Facial Bones">Skull and Facial Bones</option>
+                                <option value="Upper Arteries">Upper Arteries</option>
+                                <option value="Urinary System">Urinary System</option>
+                                <option value="Veins">Veins</option>
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel02">Tipo de técnica:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel02"
+                                required
+                                name="tipoTecnica"
+                                th:field="*{tipoTecnica}"
+                                th:value="*{tipoTecnica}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel03">Localización anatómica:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel03"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="localizacionAnatomica"
+                                th:field="*{localizacionAnatomica}"
+                                th:value="*{localizacionAnatomica}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel04">Calificatorio:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel04"
+                                required
+                                name="calificatorio"
+                                th:field="*{calificatorio}"
+                                th:value="*{calificatorio}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel05">Nombre común:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel05"
+                                required
+                                name="nombreComun"
+                                th:field="*{nombreComun}"
+                                th:value="*{nombreComun}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel06">Nombre DICOM:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel06"
+                                name="nombreDICOM"
+                                th:field="*{nombreDICOM}"
+                                th:value="*{nombreDICOM}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel07">Observaciones:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel07"
+                                name="observaciones"
+                                th:field="*{observaciones}"
+                                th:value="*{observaciones}" />
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel08">Modalidad:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel08"
+                                required
+                                name="modalidad"
+                                th:field="*{modalidad}"
+                                th:value="*{modalidad}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="CR">CR</option>
+                                <option value="CT">CT</option>
+                                <option value="DX">DX</option>
+                                <option value="MG">MG</option>
+                                <option value="MR">MR</option>
+                                <option value="NM">NM</option>
+                                <option value="PET1">PET1</option>
+                                <option value="RF">RF</option>
+                                <option value="RX">RX</option>
+                                <option value="US">US</option>
+                                <option value="XA">XA</option>
+                                <option value="XC">XC</option>
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="check-label2" style="display: inline">
+                                Consume películas radiográficas:
+                            </label>
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                id="check-label2"
+                                style="margin-left: 15px"
+                                name="consPeliRadiog"
+                                th:field="*{consPeliRadiog}"
+                                th:value="*{consPeliRadiog}" />
+                        </div>
+
+                        <div class="col-12">
+                            <a class="boton-cancel btn btn-primary" href="/TipoEstudio">Cancelar</a>
+                            <button
+                                class="boton btn btn-primary"
+                                type="submit"
+                                value="agregarTipoEstudio">
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>
