@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title>Inicio</title>
+    </head>
+    </head>
+    <body class="fondo">
+        <div class="divExterno" style="font-size: 13px">
+            <!--Cabecera-->
+            <div class="header">
+                <div class="banner">
+                    <div id="userData">
+                        <div class="photoFrameUser">
+                            <img class="userPhoto" src="/Img//Banner/User.png" />
+                        </div>
+                        <div class="userDataText">
+                            <div class="userName">
+                                <span>admin admin</span>
+                            </div>
+
+                            <div class="userSeparator"></div>
+                        </div>
+                        <div class="entityName">
+                            <span>rol</span>
+                        </div>
+                    </div>
+
+                    <div id="logo"></div>
+                </div>
+
+                <!--Inicio y Salir-->
+                <div class="linkbar">
+                    <div class="linkbarC">
+                        <table style="height: 26px">
+                            <tbody>
+                                <tr>
+                                    <td class="barMenuSeparator1">
+                                        <img th:src="@{/Img//Icons/inicio.png}" alt="Inicio" />
+                                    </td>
+                                    <td class="barMenuSeparator2">
+                                        <a class="linksBar" th:href='@{/Principal}'>Inicio</a>
+                                    </td>
+
+                                    <td class="barMenuSeparator1">
+                                        <img src="/Img//Icons/configuracion.png" alt="Inicio" />
+                                    </td>
+                                    <td class="barMenuSeparator2">
+                                        <label for="btn_password" class="linksBar"
+                                            >Cambiar Contraseña
+                                        </label>
+                                    </td>
+
+                                    <td class="barMenuSeparator1">
+                                        <img src="/Img//Icons/salir.png" alt="Salir" />
+                                    </td>
+                                    <td class="barMenuSeparator2">
+                                        <form th:action="@{/logout}" method="post">
+                                            <input type="submit" style="font-weight: 700; border: oldlace;" value="Salir"/>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="linkbarLeft"></div>
+                </div>
+            </div>
+
+            <!--Cambiar Contraseña-->
+            <input type="checkbox" id="btn_password" />
+            <div class="container_password">
+                <div class="cont_password">
+                    <nav>
+                        <form class="needs-validation" novalidate>
+                            <div class="container">
+                                <label>Contraseña actual</label>
+                                <input type="text" class="form-control" required />
+
+                                <label>Nueva contraseña</label>
+                                <input type="text" class="form-control" required />
+
+                                <label>Confirmar contraseña</label>
+                                <input type="text" class="form-control" required />
+
+                                <button class="boton btn btn-primary" type="submit">Aceptar</button>
+                            </div>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+
+            <!--Area Central-->
+            <div class="row col-12" style="margin: 0">
+                <!--Menu-->
+                <div class="col-3" style="padding-left: 0; padding-right: 5px">
+                    <!--Opciones del Menú-->
+                    <div class="list-group">
+                        <p class="tituloMenú">Menú</p>
+
+                        <a
+                            href="#"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/ficha_clinica.png" width="20px" />
+                            Ficha clínica
+                        </a>
+
+                        <a
+                            href="Paciente"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/admision.png" width="20px" />
+                            Admisión de pacientes
+                        </a>
+
+                        <a
+                            href="Cita"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/buscar_citas.png" width="20px" />
+                            Buscar Citas
+                        </a>
+
+                        <a
+                            href="#"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/citas_estudio.png" width="18px" />
+                            Listas de Estudios
+                        </a>
+
+                        <a
+                            href="#"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/lista_trabajo_reportes.png" width="18px" />
+                            Lista de Informes
+                        </a>
+
+                        <a
+                            href="TipoEstudio"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/tipo_estudio.png" width="20px" />
+                            Tipos de estudios
+                        </a>
+
+                        <a
+                            href="#"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/servicio_citas.png" width="23px" />
+                            Servicio de citas
+                        </a>
+
+                        <a
+                            href="Usuario"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/usuarios_roles.png" width="20px" />
+                            Usuarios
+                        </a>
+
+                        <a
+                            href="Medico"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/usuarios_roles.png" width="20px" />
+                            Médico
+                        </a>
+
+                        <a
+                            href="Equipo"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/equipo.png" width="20px" />
+                            Equipos
+                        </a>
+
+                        <a
+                            href="infoInstitu"
+                            class="list-group-item list-group-item-action list-group-item-success">
+                            <img src="../Img//Menu/usuarios_roles.png" width="20px" />
+                            Información de la institución
+                        </a>
+                    </div>
+                </div>
+
+                <!--Zona de trabajo-->
+                <div id="variable" th:replace="${view} :: content" class="col-9 mensage" style="padding: 0; margin: 0"></div>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>
