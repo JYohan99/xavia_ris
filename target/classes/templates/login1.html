@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/EstiloPrincipal.css" type="text/css" />
+        <link rel="stylesheet" href="/Bootstrap/css/bootstrap.min.css" />
+        <title>Autenticación</title>
+    </head>
+    <body class="fondo">
+        <!--Formulario-->
+        <div class="container estilo-form">
+            <form class="row needs-validation data" novalidate style="top: 125px">
+                <div class="form-floating mb-2">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="usuario"
+                        required
+                        placeholder="User" />
+                    <label for="usuario" id="label-index-user">Usuario:</label>
+                </div>
+
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="contrasena"
+                        required
+                        placeholder="Password" />
+                    <label for="contrasena" id="label-index-pass">Contraseña:</label>
+                </div>
+
+                <div class="col-12">
+                    <button class="boton btn-login btn btn-primary" type="submit">Aceptar</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="/Bootstrap/js/bootstrap.min.js"></script>
+        <script src="/js/jquery-3.6.1.min.js"></script>
+        <script src="/js/app.js"></script>
+    </body>
+</html>

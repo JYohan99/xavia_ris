@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="col-9 mensage" style="padding: 0; margin: 0">
+            <!--Barra titulo-->
+            <div class="estBarraTitulo">
+                <p class="titulo">Registrar médico</p>
+            </div>
+
+            <div class="mensage">
+                En esta sección debe especificar los datos del médico que desea registrar como en el
+                sistema. Algunos de estos datos son obligatorios según lo establecido en la institución.
+            </div>
+
+            <!--------------Mensage que se muestra al guardar--------------->
+            <div id="success-alert" class="error" th:text="${mensaje}"></div>
+
+            <div class="interactua">
+                <p class="encabezado">Datos personales del médico</p>
+
+                <!--Buscar Imagen-->
+                <form
+                    class="row needs-validation"
+                    method="post"
+                    onSubmit="return true;"
+                    style="margin: 0"
+                    novalidate
+                    th:action="@{/registrarMedico}"
+                    th:object="${registrarMedicoForm}">
+                    <div class="container col-5" style="text-align: center">
+                        <input type="file" name="file" class="file" />
+
+                        <img src="/Img/Banner/User2.jpg" id="preview" class="img-paciente" />
+
+                        <div class="col-12">
+                            <button type="button" class="browse boton-estilo btn btn-primary">
+                                Explorar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--Formulario-->
+                    <div class="container col-6 row">
+                        <div class="col-6">
+                            <input type="hidden" th:field="*{id}" th:value="*{id}" />
+                            <label for="input-lavel01">Nombre:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel01"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="nombre"
+                                th:field="*{nombre}"
+                                th:value="*{nombre}" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel02">Especialidad:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel02"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="especialidad"
+                                th:field="*{especialidad}"
+                                th:value="*{especialidad}" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel03">Apellido:</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-lavel03"
+                                onkeypress="return soloLetras(event)"
+                                required
+                                name="apellido"
+                                th:field="*{apellido}"
+                                th:value="*{apellido}" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel04">Edad:</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="input-lavel04"
+                                min="0"
+                                required
+                                name="edad"
+                                th:field="*{edad}"
+                                th:value="*{edad}" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel07">N. Identidad:</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="input-lavel07"
+                                min="9999999999"
+                                max="99999999999"
+                                required
+                                name="nIdentidadM"
+                                th:field="*{nIdentidadM}"
+                                th:value="*{nIdentidadM}" />
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel05">Sexo:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel05"
+                                required
+                                name="sexo"
+                                th:field="*{sexo}"
+                                th:value="*{sexo}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="input-lavel06">Teléfono:</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="input-lavel06"
+                                min="9999999"
+                                max="99999999"
+                                name="telefono"
+                                th:field="*{telefono}"
+                                th:value="*{telefono}" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="validationTextarea">Dirección actual:</label>
+                            <textarea
+                                class="form-control"
+                                id="validationTextarea"
+                                required
+                                name="direccionActual"
+                                th:field="*{direccionActual}"
+                                th:value="*{direccionActual}"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <a class="boton-cancel btn btn-primary" href="/Medico">Cancelar</a>
+                            <button class="boton btn btn-primary" type="submit" value="registrarMedico">
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+            
+        
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <nav class="navbar navbar-expand-lg bg-light" style="padding: 0;">
+                <div class="container-fluid titulo">
+                    <a class="navbar-brand" href="/TipoEstudio">Gestionar Tipos de Estudios</a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/paginaCrear">Crear Tipo de Estudio</a>
+                            </li>
+                        </ul>
+
+                        <!--Buscador de varios campos-->
+                        <div class="buscar">
+                            <form th:action="@{/TipoEstudio}">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar"
+                                    name="palBuscarTipoEstudio"
+                                    th:value="${palBuscarTipoEstudio}" />
+                                <div class="btnbuscar">
+                                    <button class="btn" type="submit" value="palBuscarTipoEstudio">
+                                        <img src="../Img/Icons/buscar 48x48.png" width="30px" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!--------------Mensage que se muestra al guardar-------------->
+            <div id="success-alert" class="info" th:text="${mensaje}"></div>
+            
+            <!--Lista de tipos de estudios-->
+            <div class="container tbl-container">
+                <div class="row tbl-fixed">
+                    <table
+                        class="table table-success table-hover table-fixer"
+                        cellspacing="0"
+                        style="font-size: 12px; margin-bottom: 0">
+                        <thead>
+                            <tr class="gridHeader" style="color: #f8fcf8">
+                                <th style="background: #124116; border-radius: 7px 0 0 0">Nombre</th>
+                                <th style="background: #124116">Nombre DICOM</th>
+                                <th style="background: #124116">Tipo de técnica</th>
+                                <th style="background: #124116">Localización anatómica</th>
+                                <th style="background: #124116">Observaciones</th>
+                                <th style="background: #124116">Consume películas</th>
+                                <th style="background: #124116">Modalidad</th>
+                                <th style="background: #124116; border-radius: 0 7px 0 0">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="t:${tipoEstudios}">
+                                <tr>
+                                    <td th:text="${t.nombreComun}"></td>
+                                    <td th:text="${t.nombreDICOM}"></td>
+                                    <td th:text="${t.tipoTecnica}"></td>
+                                    <td th:text="${t.localizacionAnatomica}"></td>
+                                    <td th:text="${t.observaciones}"></td>
+                                    <td th:text="${t.consPeliRadiog}">si/no</td>
+                                    <td th:text="${t.modalidad}">DX</td>
+                                    <td>
+                                        <a
+                                            class="mx-2"
+                                            th:href="@{'/eliminarTipoEstudio/'+${t.id}}"
+                                            onclick="return confirm('El tipo de estudio será eliminado del listado de estudios permanentemente si selecciona la opción aceptar')">
+                                            <img src="../Img/Icons/eliminar.png" width="23px"
+                                        /></a>
+
+                                        <a class="mx-2" th:href="@{'/editarTipoEstudio/'+${t.id}}">
+                                            <img src="../Img/Icons/editar.png" width="23px" />
+                                        </a>
+                                    </td>
+
+                                    <!-- <td>
+                                    <input
+                                        type="image"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#eliminar-estudio"
+                                        src="../Img/Icons/eliminar.png"
+                                        title="eliminar" />
+                                </td> -->
+                                </tr>
+                            </th:block>
+                        </tbody>
+                        <tr>
+                            <td
+                                style="background-color: #124116; border-radius: 0 0 7px 7px"
+                                colspan="9"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!--Cuadro Eliminar tipo de estudio-->
+            <div
+                class="modal fade"
+                id="eliminar-estudio"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <p class="encabezado">Eliminar tipo de estudio</p>
+
+                        <div class="alert alert-danger" sti>
+                            Se eliminará el tipo de estudio seleccionado. Al seleccionar Sí se perderán
+                            todos los datos. ¿Desea continuar?
+
+                            <div class="col-12">
+                                <button
+                                    type="button"
+                                    class="btn boton btn-primary"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    Cancelar
+                                </button>
+                                <button type="button" class="btn boton btn-secondary">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

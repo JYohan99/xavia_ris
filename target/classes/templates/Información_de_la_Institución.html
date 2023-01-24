@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/EstiloPrincipal.css" type="text/css" />
+        <link rel="stylesheet" href="../css/EstiloSecundario.css" type="text/css" />
+        <link rel="stylesheet" href="/Bootstrap/css/bootstrap.min.css" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <div class="estBarraTitulo">
+                <p class="titulo">Información de la institución</p>
+            </div>
+
+            <div class="mensage">
+                Gestione la información de la institución hospitalaria. Datos como el tipo y nombre de
+                la institución se mostrarán en los diferentes documentos e informes que se generen en el
+                sistema.
+            </div>
+
+            <div class="interactua">
+                <p class="encabezado">Información de la institución</p>
+
+                <!--Formulario-->
+                <form
+                    class="row needs-validation"
+                    method="post"
+                    onSubmit="return false;"
+                    novalidate
+                    id="inf-inst-Formulario">
+                    <div class="col-4">
+                        <label for="input-lavel01">Tipo de entidad:</label>
+                        <input type="text" class="form-control" id="input-lavel01" onkeypress="return soloLetras(event)"
+                                required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel02">Nombre:</label>
+                        <input type="text" class="form-control" id="input-lavel02" onkeypress="return soloLetras(event)"
+                                required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel03">Estado:</label>
+                        <input type="text" class="form-control" id="input-lavel03" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel04">Municipio:</label>
+                        <input type="text" class="form-control" id="input-lavel04" onkeypress="return soloLetras(event)"
+                                required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel05">Teléfono:</label>
+                        <input type="tel" class="form-control" id="input-lavel05" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel06">Fax:</label>
+                        <input type="text" class="form-control" id="input-lavel06" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel07">Correo electrónico:</label>
+                        <input type="text" class="form-control" id="input-lavel07" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label for="input-lavel08">Código:</label>
+                        <input type="text" class="form-control" id="input-lavel08" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="validationTextarea">Dirección actual:</label>
+                        <textarea
+                            class="form-control"
+                            id="validationTextarea"
+                            placeholder=""
+                            required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <a class="boton-cancel btn btn-primary" href="/">Cancelar</a>
+                        <button class="boton btn btn-primary" type="submit" value="agregarCita">
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

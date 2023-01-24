@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <!--Barra titulo-->
+            <div class="estBarraTitulo">
+                <p class="titulo">Citas para estudios</p>
+            </div>
+
+            <!--Información del paciente-->
+            <div class="container tbl-container">
+                <div class="row tbl-fixed">
+                    <table
+                        class="table table-success table-hover table-fixer"
+                        cellspacing="0"
+                        style="font-size: 12px; margin-bottom: 0">
+                        <thead>
+                            <tr class="gridHeader" style="color: #f8fcf8">
+                                <th style="background: #124116; border-radius: 7px 0 0 0">Foto</th>
+                                <th style="background: #124116">Nombre</th>
+                                <th style="background: #124116">Apellidos</th>
+                                <th style="background: #124116">Sexo</th>
+                                <th style="background: #124116">N. Identidad</th>
+                                <th style="background: #124116">Fecha de nacimiento</th>
+                                <th style="background: #124116">Edad</th>
+
+                                <th style="background: #124116; border-radius: 0 7px 0 0">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="../Img/Banner/User2.jpg" width="160" />
+                                    </td>
+                                    <td >Nombre</td>
+                                    <td >Apellido</td>
+                                    <td >N. Identidad</td>
+                                    <td >Fecha de nacimiento</td>
+                                    <td >Edad</td>
+                                    <td >Sexo</td>
+
+                                    <td>
+                                        <a>
+                                            <img src="../Img/Icons/editar.png" width="30px"
+                                        /></a>
+                                        &nbsp; &nbsp; &nbsp;
+
+                                        <a href="">
+                                            <img
+                                                src="../Img/Icons/equipo.png"
+                                                title="Citar para equipo"
+                                                width="30px" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------->
+            
+
+            <!--Criterio de Planificación-->
+            <div class="interactua">
+                <p class="encabezado">Criterios de planificación</p>
+
+                <!--Formulario-->
+                <div class="container col-8" id="form-Isquierda">
+                    <form
+                        class="row needs-validation"
+                        novalidate
+                        method="post"
+                        th:action="@{/agregarCita}"
+                        th:object="${agregarCitaForm}">
+                        <input type="hidden" th:field="*{id}" th:value="*{id}" />
+
+                        <div class="col-4">
+                            <label for="input-lavel02">Equipo:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel02"
+                                th:field="*{equipo}"
+                                required>
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option
+                                    th:each="data : ${listaEquipo}"
+                                    th:value="${data.id}"
+                                    th:text="${data.nombreEquipo}" />
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel03">Tipo de Estudio:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel02"
+                                th:field="*{tipoEstudio}"
+                                required>
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option
+                                    th:each="data : ${listaTipoEstudio}"
+                                    th:value="${data.id}"
+                                    th:text="${data.nombreComun}" />
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel04">Procedencia:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel04"
+                                required
+                                name="procedencia"
+                                th:field="*{procedencia}"
+                                th:value="*{procedencia}">
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option value="Consulta Externa">Consulta Externa</option>
+                                <option value="Emergencias">Emergencias</option>
+                                <option value="Hospitalización">Hospitalización</option>
+                                <option value="Instituciones externas">Instituciones externas</option>
+                                <option value="Pruebas">Pruebas</option>
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel05">Médico:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel02"
+                                th:field="*{medico}"
+                                required>
+                                <option value="" th:text="'Seleccione'"></option>
+                                <option
+                                    th:each="data : ${listaMedico}"
+                                    th:value="${data.id}"
+                                    th:text="${data.nombre}" />
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel04">Estado:</label>
+                            <select
+                                class="form-select"
+                                id="input-lavel04"
+                                required
+                                name="estado"
+                                th:field="*{estado}"
+                                th:value="*{estado}">
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Efectuada">Efectuada</option>
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="input-lavel06">Fecha:</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="input-lavel06"
+                                required
+                                name="fechaCita"
+                                th:field="*{fechaCita}"
+                                th:value="*{fechaCita}" />
+                        </div>
+
+                        <div class="col-12">
+                            <a class="boton-cancel btn btn-primary" href="/Paciente">Cancelar</a>
+                            <button class="boton btn btn-primary" type="submit" value="agregarCita">
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

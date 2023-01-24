@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+                <!--Barra titulo-->
+                <div class="estBarraTitulo">
+                    <p class="titulo">Admición de Pacientes</p>
+                </div>
+    
+                <div class="mensage">
+                    En esta sección debe especificar los datos de la persona que desea registrar como
+                    paciente en el sistema. Algunos de estos datos son obligatorios según lo establecido en
+                    la institución.
+                </div>
+                
+                <!--------------Mensage que se muestra al guardar--------------->
+                <div id="success-alert" class="error" th:text="${mensaje}"></div>
+    
+                <!--Buscar Imagen-->
+                <div class="interactua">
+                    <p class="encabezado">Datos generales del paciente</p>
+    
+                    <form
+                        class="row needs-validation"
+                        method="POST"
+                        onSubmit="return true;"
+                        style="margin: 0"
+                        id="admitir_Paciente_Form"
+                        novalidate
+                        th:action="@{/admitirPaciente}"
+                        th:object="${admitirPacienteForm}">
+                        <div class="container col-4" style="text-align: center">
+                            <input type="file" name="file" class="file" />
+    
+                            <img src="../Img/Banner/User2.jpg" id="preview" class="img-paciente" />
+    
+                            <div class="col-12">
+                                <button type="button" class="browse boton-estilo btn btn-primary">
+                                    Explorar
+                                </button>
+                            </div>
+                        </div>
+    
+                        <!--Formulario-->
+                        <div class="container col-8 row">
+                            <div class="col-6">
+                                <input type="hidden" th:field="*{id}" th:value="*{id}" />
+    
+                                <label for="input-lavel01">Nombre:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="input-lavel01"
+                                    onkeypress="return soloLetras(event)"
+                                    required
+                                    name="nombre"
+                                    th:field="*{nombre}"
+                                    th:value="*{nombre}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel02">País de nacimiento:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="input-lavel02"
+                                    onkeypress="return soloLetras(event)"
+                                    required
+                                    name="paisNacimiento"
+                                    th:field="*{paisNacimiento}"
+                                    th:value="*{paisNacimiento}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel03">Apellido:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="input-lavel03"
+                                    onkeypress="return soloLetras(event)"
+                                    required
+                                    name="apellido"
+                                    th:field="*{apellido}"
+                                    th:value="*{apellido}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel04">Estado de residencia:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="input-lavel04"
+                                    onkeypress="return soloLetras(event)"
+                                    required
+                                    name="estadoRecidencia"
+                                    th:field="*{estadoRecidencia}"
+                                    th:value="*{estadoRecidencia}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel05">Edad:</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="input-lavel05"
+                                    min="0"
+                                    required
+                                    name="edad"
+                                    th:field="*{edad}"
+                                    th:value="*{edad}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel06">Municipio de residencia:</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="input-lavel06"
+                                    onkeypress="return soloLetras(event)"
+                                    required
+                                    name="municipioRecidencia"
+                                    th:field="*{municipioRecidencia}"
+                                    th:value="*{municipioRecidencia}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel07">Fecha de nacimiento:</label>
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="input-lavel07"
+                                    required
+                                    name="fechaNacimiento"
+                                    th:field="*{fechaNacimiento}"
+                                    th:value="*{fechaNacimiento}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel08">Sexo:</label>
+                                <select
+                                    class="form-select"
+                                    id="input-lavel08"
+                                    required
+                                    name="sexo"
+                                    th:field="*{sexo}"
+                                    th:value="*{sexo}">
+                                    <option value="" th:text="'Seleccione'"></option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel09">Teléfono:</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="input-lavel09"
+                                    min="9999999"
+                                    max="99999999"
+                                    name="telefono"
+                                    th:field="*{telefono}"
+                                    th:value="*{telefono}" />
+                            </div>
+    
+                            <div class="col-6">
+                                <label for="input-lavel10">N. Identidad:</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="input-lavel10"
+                                    min="9999999999"
+                                    max="99999999999"
+                                    required
+                                    name="nIdentidadP"
+                                    th:field="*{nIdentidadP}"
+                                    th:value="*{nIdentidadP}" />
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="validationTextarea">Dirección actual:</label>
+                                <textarea
+                                    class="form-control"
+                                    id="validationTextarea"
+                                    required
+                                    name="direccionActual"
+                                    th:field="*{direccionActual}"
+                                    th:value="*{direccionActual}"></textarea>
+                            </div>
+    
+                            <div class="col-12">
+                                <a class="boton-cancel btn btn-primary" href="/Paciente">Cancelar</a>
+                                <button
+                                    class="boton btn btn-primary"
+                                    type="submit"
+                                    value="admitirPacienteForm">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>
