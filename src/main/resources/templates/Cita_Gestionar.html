@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title></title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <nav class="navbar navbar-expand-lg bg-light" style="padding: 0;">
+                <div class="container-fluid titulo">
+                    <a class="navbar-brand" href="/Cita">Gestionar Cita</a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"></li>
+                        </ul>
+
+                        <!--Buscador de varios campos-->
+                        <div class="buscar">
+                            <form th:action="@{/Cita}">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar"
+                                    name="palBuscarCita"
+                                    th:value="${palBuscarCita}" />
+                                <div class="btnbuscar">
+                                    <button class="btn" type="submit" value="palBuscarCita">
+                                        <img src="../Img/Icons/buscar 48x48.png" width="30px" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!--Lista de los equipos-->
+            <div class="container tbl-container">
+                <div class="row tbl-fixed">
+                    <table
+                        class="table table-success table-hover table-fixer"
+                        cellspacing="0"
+                        style="font-size: 12px; margin-bottom: 0">
+                        <thead>
+                            <tr class="gridHeader" style="color: #f8fcf8">
+                                <th style="background: #124116; border-radius: 7px 0 0 0">Paciente</th>
+                                <th style="background: #124116">Equipo</th>
+                                <th style="background: #124116">Tipo de estudio</th>
+                                <th style="background: #124116">Procedencia</th>
+                                <th style="background: #124116">Médico</th>
+                                <th style="background: #124116">Fecha de la Cita</th>
+                                <th style="background: #124116">Estado</th>
+                                <th style="background: #124116; border-radius: 0 7px 0 0">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <th:block th:each="c:${citas}">
+                                <tr class="border-bottom border-success">
+                                    <td th:text="${c.paciente.nombre}"></td>
+                                    <td th:text="${c.equipo.nombreEquipo}"></td>
+                                    <td th:text="${c.tipoEstudio.nombreComun}"></td>
+                                    <td th:text="${c.procedencia}"></td>
+                                    <td th:text="${c.medico.nombre}"></td>
+                                    <td th:text="${c.fechaCita}"></td>
+                                    <td th:text="${c.estado}"></td>
+                                    <td>
+                                        <a href="#">
+                                            <img
+                                            src="../Img/Icons/seleccionar_uno.png"
+                                            title="Generar Informe" />
+                                        </a>
+
+                                        &nbsp;
+                                        <a th:href="@{'/editarCita/'+${c.id}}">
+                                            <img
+                                                src="../Img/Icons/editar.png"
+                                                title="Editar Cita"
+                                                width="30px" />
+                                        </a>
+
+                                        <a
+                                            class="boton-cancel btn btn-primary"
+                                            th:href="@{'/eliminarCita/'+${c.id}}"
+                                            onclick="return confirm('Estas seguro de eliminar los datos de esta cita')">
+                                            Cancelar
+                                        </a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                        <tr>
+                            <td
+                                style="background-color: #124116; border-radius: 0 0 7px 7px"
+                                colspan="9"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

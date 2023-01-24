@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+    </head>
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <p class="titulo">Inicio</p>
+
+            <div style="padding-left: 10px; padding-right: 10px; text-align: justify">
+                <br />
+                <b>XAVIA RIS</b> es un
+                <b>Sistema de Información Radiológica</b> (<b>RIS</b>, por sus siglas en
+                inglés). Los <b>RIS</b> son sistemas ampliamente usados en las instituciones
+                hospitalarias para la informatización de los departamentos de Diagnóstico
+                por Imágenes.
+                <br />
+                <br />
+                El XAVIA RIS está concebido para interactuar con <b>XAVIA PACS </b>, Sistema
+                de Almacenamiento y Transmisión de Imágenes Médicas (<b>PACS</b>, por sus
+                siglas en inglés).
+                <br />
+                <br />
+                El sistema <b>XAVIA PACS</b> se encarga del almacenamiento, obtención,
+                visualización y manipulación de imágenes médicas de las modalidades
+                diagnósticas; <b>XAVIA RIS</b>
+                sirve como complemento para cerrar el flujo de trabajo de los departamentos
+                de diagnósticos por imágenes de cualquier institución hospitalaria.
+                <br />
+                <br />
+                <b>XAVIA RIS</b> facilita al personal de atención y organización de los
+                servicios las herramientas para la gestión de la información de los
+                pacientes que son atendidos en el Departamento; así como la información de
+                las citas otorgadas a estos tanto para la realización de estudios de
+                imágenes, como la realización de consultas con especialistas del
+                Departamento. Permite la creación de las listas de trabajo para los equipos
+                de adquisición de imágenes <b>DICOM</b> compatibles, así como una lista de
+                trabajo para las consultas y especialistas.<br />
+                <br />
+                <br />
+            </div>
+        </div>
+
+        
+        <!-- <a sec:authorize="hasAuthority('ADMIN')" th:href='@{/formulario}'>Adicionar una película</a>
+        <br/><a th:href='@{/listar}'>Listar todas las películas</a>
+        <br/><a th:href='@{/menortiempo}'>Listar las películas que tienen un tiempo de duración en minutos menor que un valor dado</a>
+        <br/> -->
+        
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+        <script th:src="@{/js/app.js}"></script>
+    </body>
+</html>

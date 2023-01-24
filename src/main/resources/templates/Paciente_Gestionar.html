@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/EstiloPrincipal.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/css/EstiloSecundario.css}" type="text/css" />
+        <link rel="stylesheet" th:href="@{/Bootstrap/css/bootstrap.min.css}" />
+        <title>BP Admitir</title>
+    </head>
+
+    <body th:fragment="content">
+        <div class="trabajoConten">
+            <nav class="navbar navbar-expand-lg bg-light" style="padding: 0;">
+                <div class="container-fluid titulo">
+                    <a class="navbar-brand" href="/Paciente">Gestionar Paciente</a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/paginaPaciente_Admitir">Admitir Paciente</a>
+                            </li>
+                        </ul>
+
+                        <!--Buscador de varios campos-->
+                        <div class="buscar">
+                            <form th:action="@{/Paciente}">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar"
+                                    name="palBuscarPaciente"
+                                    th:value="${palBuscarPaciente}" />
+                                <div class="btnbuscar">
+                                    <button class="btn" type="submit" value="palBuscarPaciente">
+                                        <img src="../Img/Icons/buscar 48x48.png" width="30px" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!--------------Mensage que se muestra al guardar-------------->
+            <div id="success-alert" class="info" th:text="${mensaje}"></div>
+
+            <!--Lista de pacientes-->
+            <div class="container tbl-container">
+                <div class="row tbl-fixed">
+                    <table
+                        class="table table-success table-hover table-fixer"
+                        cellspacing="0"
+                        style="font-size: 12px; margin-bottom: 0">
+                        <thead>
+                            <tr class="gridHeader" style="color: #f8fcf8">
+                                <th style="background: #124116; border-radius: 7px 0 0 0">Foto</th>
+                                <th style="background: #124116">Nombre</th>
+                                <th style="background: #124116">Apellidos</th>
+                                <th style="background: #124116">N. Identidad</th>
+                                <th style="background: #124116">Fecha de nacimiento</th>
+                                <th style="background: #124116">Edad</th>
+                                <th style="background: #124116">Sexo</th>
+                                <th style="background: #124116; border-radius: 0 7px 0 0">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="p:${pacientes}">
+                                <tr>
+                                    <td class="text-center"><img src="../Img/Banner/User.png" width="40px"/></td>
+                                    <td th:text="${p.nombre}">Nombre</td>
+                                    <td th:text="${p.apellido}">Apellido</td>
+                                    <td th:text="${p.nIdentidadP}">N. Identidad</td>
+                                    <td th:text="${p.fechaNacimiento}">Fecha de nacimiento</td>
+                                    <td th:text="${p.edad}">Edad</td>
+                                    <td th:text="${p.sexo}">Sexo</td>
+
+                                    <td>
+                                        <a th:href="@{'/editarPaciente/'+${p.id}}">
+                                            <img
+                                                src="../Img/Icons/editar.png"
+                                                title="Editar datos del Paciente"
+                                                width="30px"
+                                        /></a>
+                                        &nbsp; &nbsp; &nbsp;
+
+                                        <a th:href="@{'/paginaCita_Agregar/'+${p.id}}">
+                                            <img
+                                                src="../Img/Icons/Citar.png"
+                                                title="Citar para Estudio"
+                                                width="40px" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                        <tr>
+                            <td
+                                style="background-color: #124116; border-radius: 0 0 7px 7px"
+                                colspan="8"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
